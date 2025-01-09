@@ -20,3 +20,31 @@ Dynamic Local Structures: Uses hierarchical tree structures for efficient queryi
 5. Gaming and Virtual Reality
 6. IoT and Sensor Network Data Management
 
+## Installation
+git clone git@github.com:AjeyPaiK/hive.git
+cd hive
+pip install requirements.txt
+
+## Usage
+
+```
+from hive import HybridSpatialIndex, SpatialObject
+
+# Initialize the spatial index
+beehive = HybridSpatialIndex(x_range=(0, 100), y_range=(0, 100), grid_size=10)
+
+# Add spatial objects
+beehive.insert(SpatialObject(id=1, coordinates=(15, 15)))
+beehive.insert(SpatialObject(id=2, coordinates=(35, 45)))
+
+# Query objects within a radius
+results = beehive.query((20, 20), radius=10)
+print([obj.id for obj in results])
+```
+## Benchmarking
+```
+cd hive
+python benchmark.py
+```
+
+
