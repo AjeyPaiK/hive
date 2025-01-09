@@ -47,5 +47,40 @@ print([obj.id for obj in results])
 cd hive
 python benchmark.py
 ```
+## Complexity Analysis
+
+This section provides a detailed comparison of the **Hive** data structure against the traditional R-tree in terms of complexity for common operations.
+
+| Operation        | R-tree Complexity           | Hive Complexity                              |
+|------------------|-----------------------------|---------------------------------------------|
+| **Insertion**    | O(log n)                   | O(1) for grid lookup + O(log m) for KD-tree |
+| **Point Query**  | O(log n)                   | O(1) for grid lookup + O(log m) for KD-tree |
+| **Range Query**  | O(√n + k)                  | O(c + k), where c = number of neighbor cells accessed |
+| **Memory Usage** | Moderate (tree overhead)   | Higher for sparse datasets due to grid overhead |
+
+### Key Terms
+
+- **n**: Total number of objects in the dataset.
+- **m**: Number of objects in a single grid cell.
+- **k**: Number of results returned by a query.
+- **c**: Number of neighboring cells accessed during a range query.
+
+### Insights
+
+- **Insertion Efficiency**: Hive benefits from a constant-time grid lookup, making it faster than R-tree for dynamic datasets.
+- **Query Performance**:
+  - For **dense queries** (small regions), R-tree performs better due to fewer bounding box checks.
+  - For **sparse queries** (large regions), Hive outperforms R-tree due to reduced traversal requirements.
+- **Memory Usage**: Hive requires more memory than R-tree for sparse datasets because of the overhead introduced by the grid structure.
+- **Scalability**: Hive is ideal for 2D or 3D datasets but may require optimization for high-dimensional data where R-tree retains an edge.
+
+### Use Cases
+
+- **Hive** is particularly suited for:
+  - Real-time applications requiring fast insertions and localized queries.
+  - Applications with non-uniform data distributions.
+- **R-tree** is better for:
+  - High-dimensional datasets.
+  - Applications where dense spatial queries dominate.
 
 
