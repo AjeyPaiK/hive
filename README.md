@@ -21,10 +21,11 @@ Dynamic Local Structures: Uses hierarchical tree structures for efficient queryi
 6. IoT and Sensor Network Data Management
 
 ## Installation
+```
 git clone git@github.com:AjeyPaiK/hive.git
 cd hive
 pip install requirements.txt
-
+```
 ## Usage
 
 ```
